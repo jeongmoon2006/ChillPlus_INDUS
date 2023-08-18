@@ -1,0 +1,219 @@
+;
+;   Topology file for Ice/Water simulations
+;
+;   - Model: TIP4P/Ice
+
+
+; //// GENERAL PARAMETERS ////
+
+[ defaults ]
+; nbfunc     comb-rule      gen-pairs     fudgeLJ      fudgeQQ
+  1          2              yes           0.5          0.833333
+
+[ atomtypes ]
+; type    mass       charge      ptype     sigma[nm]      epsilon[kJ/mol]
+; TIP4P/Ice - CLA
+  OC      16.000      0.0000     A         0.31668        0.8821154
+  HC       1.008     +0.5897     A         0.0000         0.0000
+  MC       0.000     -1.1794     V         0.0000         0.0000
+; TIP4P/Ice - SOL (Water)
+  OW      16.000      0.0000     A         0.31668        0.8821154
+  HW       1.008     +0.5897     A         0.0000         0.0000
+  MW       0.000     -1.1794     V         0.0000         0.0000
+; TIP4P/Ice - pseudo-water (LIQ)
+;  OL      16.000      0.0000     A         0.31668        0.8821154
+;  HL       1.008     +0.5897     A         0.0000         0.0000
+;  ML       0.000     -1.1794     V         0.0000         0.0000
+;TRaPPE Methane
+  Me      16.040      0.0000     A          0.37300        1.230472
+
+; Include water topology
+;
+; Topology file for TIP4P/Ice
+;
+; - Model by Abascal, Sanz, Fernandez, and Vega (J. Chem. Phys. 2005)
+; - Prepared by Sean M. Marks (semarks@seas.upenn.edu)
+; - Provides equivalent definitions named SOL and ICE
+;   (for convenience)
+
+; NOTES
+;
+; The position of dummy atom "MW" is computed as follows:
+;
+;	     O                    1
+;  	   /   \                /   \
+;	  /  M  \              /  4  \
+;	 /       \            /       \
+;	HW1      HW2         2         3
+;
+; const = distance(O-M) / [ cos(angle(M-O-H)) * dist(OH)      ]
+;       = (0.01577 nm)  / [ cos(52.26 deg)    * (0.09572 nm)  ]
+;
+; a = b = const/2
+;
+; Dummy pos: r4 = r1 + a*(r2-r1) + b*(r3-r1)
+;
+; Syntax: see below
+;
+
+
+
+; ----------------------- ;
+; -- CLATHRATE (CLA) ---- ;
+; ----------------------- ;
+
+[ moleculetype ]
+; molname      nrexcl
+  CLA          3
+
+[ atoms ]
+;  nr   type  resnr   residue  name    cgnr    charge      mass
+   1    OC    1       CLA      OC      1        0.00000    16.000
+   2    HC    1       CLA      HC1     1       +0.58970     1.008
+   3    HC    1       CLA      HC2     1       +0.58970     1.008
+   4    MC    1       CLA      MC      1       -1.17940     0.0
+
+
+; Constraint algorithm
+[ settles ]
+; i  funct  doh       dhh
+  1  1      0.09572   0.15139
+
+
+[ exclusions ]
+; nr    exclude
+  1     2     3     4
+  2     1     3     4
+  3     1     2     4
+  4     1     2     3
+
+; Location of virtual site "M" of TIP4P/Ice (type 3)
+[ virtual_sites3 ]
+; Dummy  from                   funct   a               b
+  4      1       2       3      1       0.13458335      0.13458335
+
+
+
+; ----------------------- ;
+; ----- WATER (SOL) ----- ;
+; ----------------------- ;
+
+[ moleculetype ]
+; molname      nrexcl
+  S1          3
+
+[ atoms ]
+;  nr   type  resnr   residue  name    cgnr    charge      mass
+   1    OW    1       S1      OW      1        0.00000    16.000
+   2    HW    1       S1      HW1     1       +0.58970     1.008
+   3    HW    1       S1      HW2     1       +0.58970     1.008
+   4    MW    1       S1      MW      1       -1.17940     0.0
+
+; Constraint algorithm
+[ constraints ]
+; i     j       funct   length
+  1     2       1       0.09572
+  1     3       1       0.09572
+  2     3       1       0.15139
+
+[ exclusions ]
+; nr    exclude
+  1     2     3     4
+  2     1     3     4
+  3     1     2     4
+  4     1     2     3
+
+; Location of virtual site "M" of TIP4P/Ice (type 3)
+[ virtual_sites3 ]
+; Dummy  from                   funct   a               b
+  4      1       2       3      1       0.13458335      0.13458335
+
+; Restrain oxygens
+; - Effective spring constant for realistic ice I_h at 273 K:  k = 4000.0 kJ/mol/nm^2
+;[ position_restraints ]
+; nr   func   k_x      k_y      k_z    (where k_i [=] kJ/mol/nm^2)
+;  1    1      4000.0   4000.0   4000.0
+
+
+;[ moleculetype ]
+; molname     nrexcl
+;  LIQ         3
+
+;[ atoms ]
+;  nr   type  resnr   residue  name    cgnr    charge      mass
+;   1    OL    1       LIQ      OL      1        0.00000    16.000
+;   2    HL    1       LIQ      HL1     1       +0.58970     1.008
+;   3    HL    1       LIQ      HL2     1       +0.58970     1.008
+;   4    ML    1       LIQ      ML      1       -1.17940     0.0
+
+;[ constraints ]
+; i     j       funct   length
+;  1     2       1       0.09572
+;  1     3       1       0.09572
+;  2     3       1       0.15139
+
+;[ exclusions ]
+; nr    exclude
+;  1     2     3     4
+;  2     1     3     4
+;  3     1     2     4
+;  4     1     2     3
+
+; Location of virtual site "M" of TIP4P/Ice (type 3)
+;[ virtual_sites3 ]
+; Dummy  from                   funct   a               b
+;  4      1       2       3      1       0.13458335      0.13458335
+
+; Restrain oxygens
+; - Effective spring constant for realistic ice I_h at 273 K:  k = 4000.0 kJ/mol/nm^2
+;[ position_restraints ]
+; nr   func   k_x      k_y      k_z    (where k_i [=] kJ/mol/nm^2)
+;  1    1      4000.0   4000.0   4000.0
+
+
+;include methane topology
+;
+; Topology file for TraPPE UA Methane
+; NOTES
+;
+; The position of dummy atom "MW" is computed as follows:
+;
+;	     O                    1
+;  	   /   \                /   \
+;	  /  M  \              /  4  \
+;	 /       \            /       \
+;	HW1      HW2         2         3
+;
+; const = distance(O-M) / [ cos(angle(M-O-H)) * dist(OH)      ]
+;       = (0.01577 nm)  / [ cos(52.26 deg)    * (0.09572 nm)  ]
+;
+; a = b = const/2
+;
+; Dummy pos: r4 = r1 + a*(r2-r1) + b*(r3-r1)
+;
+; Syntax: see below
+;
+
+
+
+
+[ moleculetype ]
+; molname      nrexcl
+  Me          3
+
+[ atoms ]
+;  nr   type  resnr   residue  name    cgnr    charge      mass
+   1    Me    1       Me      Me      1        0.00000    16.040
+
+
+
+
+
+; //// SYSTEM ////
+[ system ]
+Clathrate Growth
+
+[ molecules ]
+CLA 2070
+Me 360
+S1 1658

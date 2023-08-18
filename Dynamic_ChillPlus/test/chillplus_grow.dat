@@ -1,0 +1,86 @@
+### OrderParameters input file for biasing on lambda_qbar6###
+# Water oxygens
+trajectory = bias_short.xtc
+TopFile = processed.top
+
+AtomGroup = {
+  name = target
+  selection = [ atom_index_file oxygen_index.txt ]
+  comm_type = neighbor
+}
+
+# CHILL+
+Steinhardt = {
+  name = chillplus1
+  type = chillplus_indus
+  harmonic_index = 3
+  probe_volume = v1
+  active_categories = [ Clath ]
+
+  # Shifted E-bond definition
+  cij_range_E_bond = [ -0.45  0.18 ]
+  cij_range_S_bond = [ -1.00 -0.80 ]
+
+  delta_cij_range_ES = 0.0 # shift upper/lower bounds up/down
+  sigma_ES   = 0.02
+  alpha_c_ES = 0.04
+
+  delta_ntilde_ES_range = 0.25
+  sigma_ntilde_ES = 0.1
+  alpha_c_ntilde_ES = 0.2
+
+  # Flags
+  PrintIndices = yes
+  fast_harmonics = yes
+  restrict_interfacial_categories = yes
+
+  # Limit to waters with 4nn
+  restrict_ntilde_nn = no
+
+  # Neighbor Sphere
+  NeighborSphere = {
+    radius = 0.35
+    sigma = 0.01
+    alpha_c = 0.02
+  }
+  # eps_nn fix for small Ntilde_nn(i)
+  eps_nn = 0.01
+  nstar_eps = 0.1
+  sigma_eps = 0.01
+  alpha_c_eps = 0.02
+
+}
+
+# Probe Volume
+ProbeVolume = {
+  name = v1
+  type = box
+  target_atom_group = target
+  x_range = [ -1.0 15.0 ]
+  y_range = [ -1.0 15.0 ]
+  z_range = [ -1.0 15.0 ]
+  # Coarse-graining
+  sigma = 0.01
+  alpha_c = 0.02
+}
+
+Bias = {
+  name = bias_chillplus1
+  order_parameter = chillplus1
+  probe_volume = v1
+  x_star_range = [ 2000 1000 ]
+  t_range_ramp = [ 0 5000 ]
+  kappa = 0.02
+}
+
+OutputFile = {
+  name = CLA_1000_monitor.dat
+  values = [ chillplus1.value  v1.N  v1.Ntilde  op.bias  bias_chillplus1.value ]
+  stride = 1
+}
+
+PrintOutput = yes
+PrintForces = yes
+MinQ = 0.0
+MaxQ = 150.0
+NumBins = 150
