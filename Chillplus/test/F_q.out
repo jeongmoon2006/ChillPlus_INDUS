@@ -1,0 +1,177 @@
+# RESULTS: Calculated F(c_3(i,j))
+# OrderParameters Input
+#
+# AtomGroup
+#   name      = target
+#   selection = [ atom_index 1-12600:4 ]
+#   num_atoms = 3150
+#
+# Indus(ProbeVolume)
+#   name = v
+#   outputs = [ value N Ntilde ]
+#   target_atom_group = target
+#   ProbeVolume
+#     type = box
+#     x_range = [ -1  15 ]
+#     y_range = [ -1  15 ]
+#     z_range = [ -1  15 ]
+#     Coarse-graining
+#       sigma   = 0 [nm]
+#       alpha_c = 0 [nm]
+#
+# Steinhardt
+#   name = chillplus
+#   outputs = [ value numEdgeCases ]
+#   type           = c
+#   full_name      = c_3(i,j)
+#   harmonic_index = 3
+#   probe_volume      = v
+#   target_atom_group = target
+#   Flags
+#     is_atomwise       = 1
+#     is_intensive      = 0
+#     need_derivatives  = 0
+#     do_fast_harmonics = 1
+#   Shells
+#     width_shell_1 = 0.7 [nm]
+#     width_shell_2 = 0.35 [nm]
+#   CHILL+ options
+#     cij_range_S = [ -1  -0.8 ]
+#     cij_range_E = [ -0.45  0.18 ]
+#     chillstar_variant = 3
+#     restrict_interfacial_categories = yes
+#   Neighbor_sphere 
+#     radius  = 0.35 [nm]
+#     sigma   = 0 [nm]
+#     alpha_c = 0 [nm]
+#
+# Biasing_potentials
+#   Need_Derivatives = 0
+# Post-processing options
+#   Xtc_File = /mnt/io3/scratch_pamish1/cjmchoi/simulation/clathrate/empty/sI/interface_pinning/bias/large_0.05/1bar/298K/sample/bias_short.xtc
+#   Production_phase
+#     t_min = none [ps]
+#     t_max = none [ps]
+#   Histogram Fv(q)
+#     min_q   = 0
+#     max_q   = 1
+#     NumBins = 100
+#
+# Output
+#   Order parameter
+#     Avg_q     -0.273362
+#     Var_q     2.97195e-05
+#     Stdev_q   0.00545156
+#     kappa_0_q 33647.9 [kBT]
+#   Number of particles
+#     Avg_n_v     3150
+#     Var_n_v     0
+#     Stdev_n_v   0
+#     kappa_0_n_v inf [kBT]
+#   Suggested biasing parameters (2*kappa_0 and 4 kBT overlap rules of thumb)
+#     kappa_q        67295.8 [kBT]
+#     delta_q_star   0.0125898
+#     kappa_n_v      inf [kBT]
+#     delta_n_v_star 0
+#
+# q  |  F(q)[kBT]  StdDev  MBB_avg  NumSamples  |  P(q)  StdDev  MBB_avg  Cumulative_P(q)
+         0	         0	       nan	       nan	       641	   6.70292	       nan	       nan	 0.0670292
+      0.01	  0.147671	       nan	       nan	       553	    5.7827	       nan	       nan	  0.124856
+      0.02	  0.211126	       nan	       nan	       519	   5.42717	       nan	       nan	  0.179128
+      0.03	  0.291329	       nan	       nan	       479	   5.00889	       nan	       nan	  0.229217
+      0.04	   0.41094	       nan	       nan	       425	   4.44421	       nan	       nan	  0.273659
+      0.05	  0.522858	       nan	       nan	       380	   3.97365	       nan	       nan	  0.313395
+      0.06	  0.565876	       nan	       nan	       364	   3.80634	       nan	       nan	  0.351459
+      0.07	  0.631147	       nan	       nan	       341	   3.56583	       nan	       nan	  0.387117
+      0.08	   0.77267	       nan	       nan	       296	   3.09526	       nan	       nan	   0.41807
+      0.09	  0.821122	       nan	       nan	       282	   2.94887	       nan	       nan	  0.447558
+       0.1	   1.01629	       nan	       nan	       232	   2.42602	       nan	       nan	  0.471818
+      0.11	  0.994969	       nan	       nan	       237	    2.4783	       nan	       nan	  0.496601
+      0.12	   1.00344	       nan	       nan	       235	   2.45739	       nan	       nan	  0.521175
+      0.13	   1.05138	       nan	       nan	       224	   2.34236	       nan	       nan	  0.544599
+      0.14	   1.22659	       nan	       nan	       188	   1.96591	       nan	       nan	  0.564258
+      0.15	   1.11592	       nan	       nan	       210	   2.19596	       nan	       nan	  0.586218
+      0.16	   1.19517	       nan	       nan	       194	   2.02865	       nan	       nan	  0.606504
+      0.17	   1.29824	       nan	       nan	       175	   1.82997	       nan	       nan	  0.624804
+      0.18	   1.33313	       nan	       nan	       169	   1.76723	       nan	       nan	  0.642476
+      0.19	   1.42608	       nan	       nan	       154	   1.61037	       nan	       nan	   0.65858
+       0.2	   1.38163	       nan	       nan	       161	   1.68357	       nan	       nan	  0.675416
+      0.21	   1.46582	       nan	       nan	       148	   1.54763	       nan	       nan	  0.690892
+      0.22	   1.70086	       nan	       nan	       117	   1.22347	       nan	       nan	  0.703127
+      0.23	   1.70944	       nan	       nan	       116	   1.21301	       nan	       nan	  0.715257
+      0.24	   1.56519	       nan	       nan	       134	   1.40123	       nan	       nan	  0.729269
+      0.25	   1.70944	       nan	       nan	       116	   1.21301	       nan	       nan	  0.741399
+      0.26	   1.61884	       nan	       nan	       127	   1.32804	       nan	       nan	  0.754679
+      0.27	    1.7181	       nan	       nan	       115	   1.20255	       nan	       nan	  0.766705
+      0.28	   1.79959	       nan	       nan	       106	   1.10844	       nan	       nan	  0.777789
+      0.29	   1.93043	       nan	       nan	        93	  0.972498	       nan	       nan	  0.787514
+       0.3	   2.21453	       nan	       nan	        70	  0.731988	       nan	       nan	  0.794834
+      0.31	   2.02038	       nan	       nan	        85	  0.888842	       nan	       nan	  0.803723
+      0.32	   1.96322	       nan	       nan	        90	  0.941127	       nan	       nan	  0.813134
+      0.33	   2.21453	       nan	       nan	        70	  0.731988	       nan	       nan	  0.820454
+      0.34	   2.05631	       nan	       nan	        82	  0.857472	       nan	       nan	  0.829029
+      0.35	   1.96322	       nan	       nan	        90	  0.941127	       nan	       nan	   0.83844
+      0.36	   2.40259	       nan	       nan	        58	  0.606504	       nan	       nan	  0.844505
+      0.37	   2.18636	       nan	       nan	        72	  0.752902	       nan	       nan	  0.852034
+      0.38	   1.96322	       nan	       nan	        90	  0.941127	       nan	       nan	  0.861445
+      0.39	   2.38549	       nan	       nan	        59	  0.616961	       nan	       nan	  0.867615
+       0.4	    2.3359	       nan	       nan	        62	  0.648332	       nan	       nan	  0.874098
+      0.41	    2.3359	       nan	       nan	        62	  0.648332	       nan	       nan	  0.880581
+      0.42	   2.41998	       nan	       nan	        57	  0.596047	       nan	       nan	  0.886542
+      0.43	    2.5312	       nan	       nan	        51	  0.533305	       nan	       nan	  0.891875
+      0.44	   2.47405	       nan	       nan	        54	  0.564676	       nan	       nan	  0.897522
+      0.45	    2.3359	       nan	       nan	        62	  0.648332	       nan	       nan	  0.904005
+      0.46	   2.59183	       nan	       nan	        48	  0.501935	       nan	       nan	  0.909024
+      0.47	   2.61288	       nan	       nan	        47	  0.491478	       nan	       nan	  0.913939
+      0.48	    2.4557	       nan	       nan	        55	  0.575133	       nan	       nan	   0.91969
+      0.49	   2.59183	       nan	       nan	        48	  0.501935	       nan	       nan	   0.92471
+       0.5	   2.70183	       nan	       nan	        43	   0.44965	       nan	       nan	  0.929206
+      0.51	   2.87951	       nan	       nan	        36	  0.376451	       nan	       nan	  0.932971
+      0.52	   2.72536	       nan	       nan	        42	  0.439193	       nan	       nan	  0.937363
+      0.53	   2.63439	       nan	       nan	        46	  0.481021	       nan	       nan	  0.942173
+      0.54	   2.79947	       nan	       nan	        39	  0.407822	       nan	       nan	  0.946251
+      0.55	   3.13082	       nan	       nan	        28	  0.292795	       nan	       nan	  0.949179
+      0.56	   2.93667	       nan	       nan	        34	  0.355537	       nan	       nan	  0.952734
+      0.57	   3.20493	       nan	       nan	        26	  0.271881	       nan	       nan	  0.955453
+      0.58	   3.32754	       nan	       nan	        23	   0.24051	       nan	       nan	  0.957858
+      0.59	   3.02904	       nan	       nan	        31	  0.324166	       nan	       nan	    0.9611
+       0.6	   3.06183	       nan	       nan	        30	  0.313709	       nan	       nan	  0.964237
+      0.61	   3.51859	       nan	       nan	        19	  0.198682	       nan	       nan	  0.966224
+      0.62	   3.28498	       nan	       nan	        24	  0.250967	       nan	       nan	  0.968734
+      0.63	    3.4673	       nan	       nan	        20	  0.209139	       nan	       nan	  0.970825
+      0.64	   3.62982	       nan	       nan	        17	  0.177768	       nan	       nan	  0.972603
+      0.65	    3.4673	       nan	       nan	        20	  0.209139	       nan	       nan	  0.974694
+      0.66	   3.57266	       nan	       nan	        18	  0.188225	       nan	       nan	  0.976576
+      0.67	   3.62982	       nan	       nan	        17	  0.177768	       nan	       nan	  0.978354
+      0.68	   3.51859	       nan	       nan	        19	  0.198682	       nan	       nan	  0.980341
+      0.69	   3.69044	       nan	       nan	        16	  0.167312	       nan	       nan	  0.982014
+       0.7	    3.4673	       nan	       nan	        20	  0.209139	       nan	       nan	  0.984105
+      0.71	   3.69044	       nan	       nan	        16	  0.167312	       nan	       nan	  0.985779
+      0.72	   3.69044	       nan	       nan	        16	  0.167312	       nan	       nan	  0.987452
+      0.73	   4.51712	       nan	       nan	         7	 0.0731988	       nan	       nan	  0.988184
+      0.74	   4.16044	       nan	       nan	        10	   0.10457	       nan	       nan	  0.989229
+      0.75	   4.38359	       nan	       nan	         8	 0.0836558	       nan	       nan	  0.990066
+      0.76	   4.38359	       nan	       nan	         8	 0.0836558	       nan	       nan	  0.990902
+      0.77	   3.82397	       nan	       nan	        14	  0.146398	       nan	       nan	  0.992366
+      0.78	   3.97812	       nan	       nan	        12	  0.125484	       nan	       nan	  0.993621
+      0.79	   4.38359	       nan	       nan	         8	 0.0836558	       nan	       nan	  0.994458
+       0.8	   4.51712	       nan	       nan	         7	 0.0731988	       nan	       nan	   0.99519
+      0.81	   4.38359	       nan	       nan	         8	 0.0836558	       nan	       nan	  0.996026
+      0.82	   5.36442	       nan	       nan	         3	 0.0313709	       nan	       nan	   0.99634
+      0.83	   5.07674	       nan	       nan	         4	 0.0418279	       nan	       nan	  0.996758
+      0.84	   5.07674	       nan	       nan	         4	 0.0418279	       nan	       nan	  0.997177
+      0.85	   5.76988	       nan	       nan	         2	 0.0209139	       nan	       nan	  0.997386
+      0.86	   4.67127	       nan	       nan	         6	 0.0627418	       nan	       nan	  0.998013
+      0.87	   5.07674	       nan	       nan	         4	 0.0418279	       nan	       nan	  0.998431
+      0.88	   5.36442	       nan	       nan	         3	 0.0313709	       nan	       nan	  0.998745
+      0.89	   5.36442	       nan	       nan	         3	 0.0313709	       nan	       nan	  0.999059
+       0.9	   5.76988	       nan	       nan	         2	 0.0209139	       nan	       nan	  0.999268
+      0.91	   5.07674	       nan	       nan	         4	 0.0418279	       nan	       nan	  0.999686
+      0.92	   6.46303	       nan	       nan	         1	  0.010457	       nan	       nan	  0.999791
+      0.93	   6.46303	       nan	       nan	         1	  0.010457	       nan	       nan	  0.999895
+      0.94	   6.46303	       nan	       nan	         1	  0.010457	       nan	       nan	         1
+      0.95	       nan	       nan	       nan	         0	         0	       nan	       nan	         1
+      0.96	       nan	       nan	       nan	         0	         0	       nan	       nan	         1
+      0.97	       nan	       nan	       nan	         0	         0	       nan	       nan	         1
+      0.98	       nan	       nan	       nan	         0	         0	       nan	       nan	         1
+      0.99	       nan	       nan	       nan	         0	         0	       nan	       nan	         1
